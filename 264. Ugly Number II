@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int nthUglyNumber(int n) {
+        vector<int>ans(n);
+        
+            int a1=0;//for 2
+            int a2=0;// for 3
+            int a3=0;//for 5
+        ans[0]=1;
+        for(int i=1;i<n;i++){
+            int twosmultiple=ans[a1]*2;
+            int threesmultiple=ans[a2]*3;
+            int fivesmultiple=ans[a3]*5;
+            ans[i]=min(twosmultiple,min(threesmultiple,fivesmultiple));
+            
+            if(ans[i]==twosmultiple)a1++;
+            if(ans[i]==threesmultiple)a2++;
+            if(ans[i]==fivesmultiple)a3++;
+            
+        }
+            
+        return ans[n-1];
+        
+    }
+};
